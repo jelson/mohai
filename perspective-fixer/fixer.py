@@ -19,9 +19,8 @@ class Fixer:
         print("scanning")
         scanner = zbar.ImageScanner()
         results = scanner.scan(zimage)
-
         print("enumerating %s results" % results)
-        for symbol in results:
-            print("symbol: %s at %s" % (symbol.data.decode(u'utf-8'), symbol.position))
+        for symbol in zimage:
+            print("symbol: %s at %s" % (symbol.data.decode(u'utf-8'), symbol.location))
 
 Fixer("../example1.jpg")
