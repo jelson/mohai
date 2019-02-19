@@ -3,9 +3,26 @@
 import sys
 import xml.etree.ElementTree
 import re
+from PIL import Image
+import subprocess
 
 def pt_to_int(pt):
     return int(pt.split('.')[0])
+
+def filter_red(inFilename, outFilename):
+    pilImage = Image.open(inFilename)
+    pixels = pilImage.load()
+    for i in range(pilImage.size[0]):
+        for j in range(pilImage.size[1]):
+            v = pixels[(i,j)]
+            if v[0] > 2 * v[1] and v[0] > 2 * v[2]:
+                pixels[(i, j)] = (0, 0, 0, 255)
+            else:
+                pixels[(i, j)] = (255, 255, 255, 255)
+    pilImage.save(outFilename)
+
+def trace(inFilename):
+    subprocess.call(["potrace", inFilename, "-t", "50", "-s", "--tight"])
 
 def translate_svg(filename):
     svg = xml.etree.ElementTree.parse(filename)
@@ -31,7 +48,8 @@ def translate_svg(filename):
             continue
 
         # Pull the numeric values out of the translate sub-directive
-        m = re.search('(.*)translate\(([-\d\.]+),([-\d\.]+)\)(.*)', transform_part)
+        m = re.search('(.*)translate\(([-\d\.]+),([-\d\.]+)\)(.*)',
+                      transform_part)
 
         prefix = m.group(1)
         translate_x = float(m.group(2))
@@ -63,6 +81,6 @@ def translate_svg(filename):
     sys.stdout.write("writing: %s\n" % (filename))
     svg.write(filename)
 
-translate_svg('../test.svg')
-
-                    
+filter_red('../test.png', '../test.redonly.bmp')
+trace("../test.redonly.bmp")
+translate_svg('../test.redonly.svg')
