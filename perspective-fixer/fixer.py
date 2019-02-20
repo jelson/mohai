@@ -6,6 +6,7 @@
 import zbar
 import io
 from PIL import Image
+import sys
 
 class Fixer:
     def __init__(self, filename):
@@ -24,4 +25,4 @@ class Fixer:
         for symbol in zimage:
             print("symbol: %s at %s" % (symbol.data.decode(u'utf-8'), symbol.location))
 
-Fixer("../example1.jpg")
+Fixer(sys.argv[1])
