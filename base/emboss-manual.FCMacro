@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+
+import FreeCAD
+import Draft
+import importSVG
+
+FreeCAD.open(u"C:/Users/jelson/Documents/Projects/3D Models/MOHAI Medallions/Medallion Face Template Rev A.FCStd")
+App.setActiveDocument("Medallion_Face_Template_Rev_A")
+App.ActiveDocument=App.getDocument("Medallion_Face_Template_Rev_A")
+doc = App.getDocument("Medallion_Face_Template_Rev_A")
+
+# Compute list of objects in the doc before importing the SVG
+beforeList = []
+for obj in doc.Objects:
+    beforeList.append(obj.Label)
+
+# Insert the SVG
+importSVG.insert(u"C:/Users/jelson/Documents/Projects/3D Models/MOHAI Medallions/test.redonly.svg","Medallion_Face_Template_Rev_A")
+
+curvesToEmboss = []
+for obj in doc.Objects:
+    if not obj.Label in beforeList:
+        curvesToEmboss.append(obj.Label)
+
+print curvesToEmboss
+
+# Convert each curve to a sketch, deleting the sketches along the way
+sketches=[]
+for curve in curvesToEmboss:
+    curveObj = doc.getObjectsByLabel(curve)
+    sketches.append(Draft.makeSketch(curveObj, autoconstraints=True, delete=True))
+
+merged = doc.addObject('Sketcher::SketchObject', 'merged-sketch')
+for sketch in sketches:
+    if hasattr(sketch, 'Geometry'):
+        for geo in sketch.Geometry:
+       	    merged.addGeometry(geo)
+    doc.removeObject(sketch.Label)
+
+emb = doc.Body.newObject("PartDesign::Pad", "embossed-drawing")
+emb.Profile = merged
+emb.Length = 0.8
+doc.recompute()
+
+
+
+    
