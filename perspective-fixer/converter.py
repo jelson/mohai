@@ -15,7 +15,7 @@ def filter_red(inFilename, outFilename):
     for i in range(pilImage.size[0]):
         for j in range(pilImage.size[1]):
             v = pixels[(i,j)]
-            if v[0] > 2 * v[1] and v[0] > 2 * v[2]:
+            if v[0] > 50 and v[0] > 2 * v[1] and v[0] > 2 * v[2]:
                 pixels[(i, j)] = (0, 0, 0, 255)
             else:
                 pixels[(i, j)] = (255, 255, 255, 255)
