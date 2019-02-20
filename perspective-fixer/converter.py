@@ -1,16 +1,53 @@
 #!/usr/bin/python
 
 import sys
-import xml.etree.ElementTree
 import re
-from PIL import Image
+import os
 import subprocess
+from PIL import Image, ExifTags
+import xml.etree.ElementTree
+import zbar
+
+def rotate(pilImage):
+    print("rotating")
+    try:
+        for orientation in ExifTags.TAGS.keys():
+            if ExifTags.TAGS[orientation]=='Orientation':
+                break
+        exif=dict(pilImage._getexif().items())
+
+        if exif[orientation] == 3:
+            return pilImage.rotate(180, expand=True)
+        elif exif[orientation] == 6:
+            return pilImage.rotate(270, expand=True)
+        elif exif[orientation] == 8:
+            return image.rotate(90, expand=True)
+
+    except (AttributeError, KeyError, IndexError):
+        # cases: image don't have getexif
+        pass
+
+# returns (left, top, right, bot)
+def detect(pilImage):
+    greyImage = pilImage.convert(mode="L")
+    #greyImage.save('grey.jpg')
+    width, height = pilImage.size
+    rawImage = greyImage.tobytes()
+
+    zimage = zbar.Image(width, height, 'GREY', rawImage)
+    print("scanning")
+    scanner = zbar.ImageScanner()
+    results = scanner.scan(zimage)
+    print("enumerating %s results" % results)
+    for symbol in zimage:
+        print("symbol: %s at %s" % (symbol.data.decode(u'utf-8'),
+                                    symbol.location))
 
 def pt_to_int(pt):
     return int(pt.split('.')[0])
 
-def filter_red(inFilename, outFilename):
-    pilImage = Image.open(inFilename)
+def filter_red(pilImage):
+    print("filtering red pixels")
     pixels = pilImage.load()
     for i in range(pilImage.size[0]):
         for j in range(pilImage.size[1]):
@@ -19,9 +56,9 @@ def filter_red(inFilename, outFilename):
                 pixels[(i, j)] = (0, 0, 0, 255)
             else:
                 pixels[(i, j)] = (255, 255, 255, 255)
-    pilImage.save(outFilename)
 
 def trace(inFilename):
+    print("tracing")
     subprocess.call(["potrace", inFilename, "-t", "50", "-s", "--tight"])
 
 def translate_svg(filename):
@@ -81,6 +118,15 @@ def translate_svg(filename):
     sys.stdout.write("writing: %s\n" % (filename))
     svg.write(filename)
 
-filter_red('../test.png', '../test.redonly.bmp')
-trace("../test.redonly.bmp")
-translate_svg('../test.redonly.svg')
+def convert(inFilename):
+    pilImage = Image.open(inFilename)
+    pilImage = rotate(pilImage)
+    corners = detect(pilImage)
+    filter_red(pilImage)
+    bmpFilename = os.path.splitext(inFilename)[0] + ".bmp"
+    pilImage.save(bmpFilename)
+    trace(bmpFilename)
+    svgFilename = os.path.splitext(inFilename)[0] + ".svg"
+    translate_svg(svgFilename)
+
+convert(sys.argv[1])
