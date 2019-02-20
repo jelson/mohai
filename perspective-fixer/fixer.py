@@ -12,6 +12,7 @@ class Fixer:
         print("Load image")
         pilImage = Image.open(filename)
         greyImage = pilImage.convert(mode="L")
+        greyImage.save('grey.jpg')
         width, height = pilImage.size
         rawImage = greyImage.tobytes()
 
