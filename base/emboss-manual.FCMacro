@@ -22,8 +22,6 @@ for obj in doc.Objects:
     if not obj.Label in beforeList:
         curvesToEmboss.append(obj.Label)
 
-print curvesToEmboss
-
 # Convert each curve to a sketch, deleting the sketches along the way
 sketches=[]
 for curve in curvesToEmboss:
