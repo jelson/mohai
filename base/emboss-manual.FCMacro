@@ -4,10 +4,10 @@ import FreeCAD
 import Draft
 import importSVG
 
-FreeCAD.open(u"C:/Users/jelson/home/mohai/base/Medallion Face Template Rev A.FCStd")
-App.setActiveDocument("Medallion_Face_Template_Rev_A")
-App.ActiveDocument=App.getDocument("Medallion_Face_Template_Rev_A")
-doc = App.getDocument("Medallion_Face_Template_Rev_A")
+FreeCAD.open(u"C:/Users/jelson/home/mohai/base/Medallion Face Template Rev B.FCStd")
+App.setActiveDocument("Medallion_Face_Template_Rev_B")
+App.ActiveDocument=App.getDocument("Medallion_Face_Template_Rev_B")
+doc = App.getDocument("Medallion_Face_Template_Rev_B")
 
 # Compute list of objects in the doc before importing the SVG
 beforeList = []
@@ -15,7 +15,7 @@ for obj in doc.Objects:
     beforeList.append(obj.Label)
 
 # Insert the SVG
-importSVG.insert(u"C:/Users/jelson/home/mohai/tmp/curr-output.svg","Medallion_Face_Template_Rev_A")
+importSVG.insert(u"C:/Users/jelson/home/mohai/tmp/curr-output.svg","Medallion_Face_Template_Rev_B")
 
 curvesToEmboss = []
 for obj in doc.Objects:

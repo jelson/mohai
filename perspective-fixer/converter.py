@@ -9,9 +9,11 @@ import xml.etree.ElementTree
 import zbar
 import shutil
 
-TARGET_WIDTH_MM = 25.0
+TARGET_WIDTH_MM = 40.0
 MM_PER_INCH = 25.4
 TEMP_FILENAME = "/cygdrive/c/Users/jelson/home/mohai/tmp/curr-output.svg"
+
+
 def rotate(pilImage):
     print("rotating")
     try:
