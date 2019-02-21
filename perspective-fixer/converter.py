@@ -7,10 +7,11 @@ import subprocess
 from PIL import Image, ExifTags
 import xml.etree.ElementTree
 import zbar
+import shutil
 
 TARGET_WIDTH_MM = 25.0
 MM_PER_INCH = 25.4
-
+TEMP_FILENAME = "/cygdrive/c/Users/jelson/home/mohai/tmp/curr-output.svg"
 def rotate(pilImage):
     print("rotating")
     try:
@@ -194,6 +195,8 @@ def convert(inFilename):
     width_px = corners[2] - corners[0]
     trace(bmpFilename, width_px)
     svgFilename = baseName + ".svg"
-    translate_svg(svgFilename)
+    #translate_svg(svgFilename)
+
+    shutil.copyfile(svgFilename, TEMP_FILENAME)
 
 convert(sys.argv[1])
