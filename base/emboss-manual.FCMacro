@@ -20,26 +20,40 @@ importSVG.insert(u"C:/Users/jelson/home/mohai/tmp/curr-output.svg","Medallion_Fa
 curvesToEmboss = []
 for obj in doc.Objects:
     if not obj.Label in beforeList:
-        curvesToEmboss.append(obj.Label)
+        curvesToEmboss.append(obj)
 
-# Convert each curve to a sketch, deleting the sketches along the way
-sketches=[]
-for curve in curvesToEmboss:
-    curveObj = doc.getObjectsByLabel(curve)
-    sketches.append(Draft.makeSketch(curveObj, autoconstraints=True, delete=True))
+# Create a fusion of all paths
+fused_paths = doc.addObject("Part::MultiFuse", "fused-paths")
+fused_paths.Shapes = curvesToEmboss
 
-merged = doc.addObject('Sketcher::SketchObject', 'merged-sketch')
-for sketch in sketches:
-    if hasattr(sketch, 'Geometry'):
-        for geo in sketch.Geometry:
-       	    merged.addGeometry(geo)
-    doc.removeObject(sketch.Label)
+extrusion = doc.addObject("Part::Extrusion", "extrusion")
 
-emb = doc.Body.newObject("PartDesign::Pad", "embossed-drawing")
-emb.Profile = merged
-emb.Length = 0.8
+extrusion.Base = fused_paths
+extrusion.DirMode = "Normal"
+extrusion.DirLink = None
+extrusion.LengthFwd = 0.4
+extrusion.LengthRev = 0.0
+extrusion.Solid = True
+extrusion.Reversed = False
+extrusion.Symmetric = False
+extrusion.TaperAngle = 0.0
+extrusion.TaperAngleRev = 0.0
+
 doc.recompute()
 
+# Convert each curve to a sketch, deleting the sketches along the way
+#sketches=[]
+#for curve in curvesToEmboss:
+#    curveObj = doc.getObjectsByLabel(curve)
+#    sketches.append(Draft.makeSketch(curveObj, autoconstraints=True, delete=True))
 
+#merged = doc.addObject('Sketcher::SketchObject', 'merged-sketch')
+#for sketch in sketches:
+#    if hasattr(sketch, 'Geometry'):
+#        for geo in sketch.Geometry:
+#       	    merged.addGeometry(geo)
+#    doc.removeObject(sketch.Label)
+#emb = doc.Body.newObject("PartDesign::Pad", "embossed-drawing")
+#emb.Profile = merged
+#emb.Length = 0.8
 
-    
