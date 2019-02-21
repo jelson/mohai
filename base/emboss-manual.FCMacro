@@ -39,6 +39,9 @@ extrusion.Symmetric = False
 extrusion.TaperAngle = 0.0
 extrusion.TaperAngleRev = 0.0
 
+fused_paths = doc.addObject("Part::MultiFuse", "fused-paths")
+fused_paths.Shapes = [extrusion, doc.Body]
+
 doc.recompute()
 
 # Convert each curve to a sketch, deleting the sketches along the way
