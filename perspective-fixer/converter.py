@@ -1,16 +1,103 @@
 #!/usr/bin/python
 
 import sys
-import xml.etree.ElementTree
 import re
-from PIL import Image
+import os
 import subprocess
+from PIL import Image, ExifTags
+import xml.etree.ElementTree
+import zbar
+
+TARGET_WIDTH_MM = 25.0
+MM_PER_INCH = 25.4
+
+def rotate(pilImage):
+    print("rotating")
+    try:
+        for orientation in ExifTags.TAGS.keys():
+            if ExifTags.TAGS[orientation]=='Orientation':
+                break
+        exif=dict(pilImage._getexif().items())
+
+        if exif[orientation] == 3:
+            return pilImage.rotate(180, expand=True)
+        elif exif[orientation] == 6:
+            return pilImage.rotate(270, expand=True)
+        elif exif[orientation] == 8:
+            return image.rotate(90, expand=True)
+
+    except (AttributeError, KeyError, IndexError):
+        # cases: image don't have getexif
+        pass
+
+# returns (left, top, right, bot)
+def detect(pilImage):
+    greyImage = pilImage.convert(mode="L")
+    #greyImage.save('grey.jpg')
+    width, height = pilImage.size
+    rawImage = greyImage.tobytes()
+
+    zimage = zbar.Image(width, height, 'GREY', rawImage)
+    print("scanning")
+    scanner = zbar.ImageScanner()
+    results = scanner.scan(zimage)
+    print("enumerating %s results" % results)
+
+    left = None
+    top = None
+    right = None
+    bot = None
+
+    # coordinate system origin is at top-left; symbol locations are
+    # 4-tuples of the x-y coordinates of the symbol, counter-clockwise
+    # from top-left: [topleft, bottomleft, bottomright, topright]
+    #
+    # NOTE we intentionally over-write values here. In other words,
+    # the top-left and top-right symbols both define the top. But
+    # that's fine because it gives us more robustness to symbol
+    # detection failures.
+    for symbol in zimage:
+        name = symbol.data.decode(u'utf-8')
+        loc = symbol.location
+        print("symbol: %s at %s" % (name, loc))
+
+        if name == 'topleft':
+            # We want the bottom-right corner of the top-left symbol
+            left = loc[2][0]
+            top = loc[2][1]
+            print("left: %d, top: %d" % (left, top))
+
+        elif name == 'bottomleft':
+            # We want the top-right corner of the bottom-left symbol
+            left = loc[3][0]
+            bot = loc[3][1]
+            print("left: %d, bot: %d" % (left, bot))
+
+        elif name == 'bottomright':
+            # We want the top-left corner of the bottom-right symbol
+            right = loc[0][0]
+            bot = loc[0][1]
+            print("right: %d, bot: %d" % (right, bot))
+
+        elif name == 'topright':
+            # We want the bottom-left corner of the top-right symbol
+            right = loc[1][0]
+            top = loc[1][1]
+            print("right: %d, top: %d" % (right, top))
+
+        else:
+            print("unrecognized symbol %s!" % (name))
+
+    if left == None or right == None or top == None or bot == None:
+        raise("didn't find enough anchor points")
+
+    return (left, top, right, bot)
 
 def pt_to_int(pt):
     return int(pt.split('.')[0])
 
-def filter_red(inFilename, outFilename):
-    pilImage = Image.open(inFilename)
+def filter_red(pilImage):
+    print("filtering red pixels")
     pixels = pilImage.load()
     for i in range(pilImage.size[0]):
         for j in range(pilImage.size[1]):
@@ -19,10 +106,18 @@ def filter_red(inFilename, outFilename):
                 pixels[(i, j)] = (0, 0, 0, 255)
             else:
                 pixels[(i, j)] = (255, 255, 255, 255)
-    pilImage.save(outFilename)
 
-def trace(inFilename):
-    subprocess.call(["potrace", inFilename, "-t", "50", "-s", "--tight"])
+def trace(inFilename, width_px):
+    print("tracing")
+
+    # -r argument says "one inch in the output correcponds to this
+    # many pixels in the input". The diameter of the post-cropped
+    # image should be 25mm.
+    # x pixels / 25.4mm = cropped_width / 25mm
+    res = (MM_PER_INCH / TARGET_WIDTH_MM) * width_px
+    print("res: %f" % (res))
+    subprocess.call(["potrace", inFilename, "-t", "50", "-s", "--tight",
+                     "-r", "%.2f" % (res)])
 
 def translate_svg(filename):
     svg = xml.etree.ElementTree.parse(filename)
@@ -81,6 +176,24 @@ def translate_svg(filename):
     sys.stdout.write("writing: %s\n" % (filename))
     svg.write(filename)
 
-filter_red('../test.png', '../test.redonly.bmp')
-trace("../test.redonly.bmp")
-translate_svg('../test.redonly.svg')
+def convert(inFilename):
+    baseName = os.path.splitext(inFilename)[0]
+
+    pilImage = Image.open(inFilename)
+    pilImage = rotate(pilImage)
+    pilImage.save(baseName + "-rotated.jpg")
+
+    corners = detect(pilImage)
+    pilImage = pilImage.crop(corners)
+    pilImage.save(baseName + "-cropped.jpg")
+
+    filter_red(pilImage)
+    bmpFilename = baseName + ".bmp"
+    pilImage.save(bmpFilename)
+
+    width_px = corners[2] - corners[0]
+    trace(bmpFilename, width_px)
+    svgFilename = baseName + ".svg"
+    translate_svg(svgFilename)
+
+convert(sys.argv[1])

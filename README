@@ -1,2 +1,6 @@
-this is the mohai thing
-sez jon
+Some files for the MOHAI Maker Day project I'm running
+on Feb 20. The idea is that kids can get a plastic medallion
+of any color they want starting from a drawing they make on
+a sheet of paper. This software converts that drawing into a
+3D STL file, which I'll print, make a silicone mold from, and
+then let them cast in resin they can color themselves.
