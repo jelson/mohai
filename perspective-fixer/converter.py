@@ -40,6 +40,8 @@ def rotate(pilImage):
 def detect(pilImage, baseDebugName):
     greyImage = pilImage.convert(mode="L")
     greyImage.save(baseDebugName + '-grey.jpg')
+    #bwImage = greyImage.point(lambda x: 0 if x < 128 else 255, '1')
+    #bwImage.save(baseDebugName + '-bw.png')
     width, height = pilImage.size
     rawImage = greyImage.tobytes()
 
