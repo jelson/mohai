@@ -3,6 +3,7 @@
 import sys
 import re
 import os
+import glob
 import subprocess
 from PIL import Image, ExifTags
 import xml.etree.ElementTree
@@ -31,12 +32,14 @@ def rotate(pilImage):
 
     except (AttributeError, KeyError, IndexError):
         # cases: image don't have getexif
-        pass
+        return pilImage
+
+    return pilImage
 
 # returns (left, top, right, bot)
-def detect(pilImage):
+def detect(pilImage, baseDebugName):
     greyImage = pilImage.convert(mode="L")
-    #greyImage.save('grey.jpg')
+    greyImage.save(baseDebugName + '-grey.jpg')
     width, height = pilImage.size
     rawImage = greyImage.tobytes()
 
@@ -92,7 +95,7 @@ def detect(pilImage):
             print("unrecognized symbol %s!" % (name))
 
     if left == None or right == None or top == None or bot == None:
-        raise("didn't find enough anchor points")
+        raise Exception("didn't find enough anchor points")
 
     return (left, top, right, bot)
 
@@ -180,25 +183,46 @@ def translate_svg(filename):
     svg.write(filename)
 
 def convert(inFilename):
-    baseName = os.path.splitext(inFilename)[0]
+    print("converting: %s" % (inFilename))
+    baseDir, nameOnly = os.path.split(inFilename)
+    debugDir = os.path.join(baseDir, "debug")
+    if not os.path.exists(debugDir):
+        os.mkdir(debugDir)
+    baseDebugName = os.path.join(debugDir, os.path.splitext(nameOnly)[0])
 
     pilImage = Image.open(inFilename)
     pilImage = rotate(pilImage)
-    pilImage.save(baseName + "-rotated.jpg")
+    pilImage.save(baseDebugName + "-rotated.jpg")
 
-    corners = detect(pilImage)
+    corners = detect(pilImage, baseDebugName)
     pilImage = pilImage.crop(corners)
-    pilImage.save(baseName + "-cropped.jpg")
+    pilImage.save(baseDebugName + "-cropped.jpg")
 
     filter_red(pilImage)
-    bmpFilename = baseName + ".bmp"
+    bmpFilename = baseDebugName + ".bmp"
     pilImage.save(bmpFilename)
 
     width_px = corners[2] - corners[0]
     trace(bmpFilename, width_px)
-    svgFilename = baseName + ".svg"
+    svgFilename = baseDebugName + ".svg"
     #translate_svg(svgFilename)
 
     shutil.copyfile(svgFilename, TEMP_FILENAME)
 
-convert(sys.argv[1])
+def main(argv):
+    if len(argv) != 2:
+        print("usage: %s <dir-name>" % (argv[0]))
+        sys.exit(1)
+
+    dirName = sys.argv[1]
+    if not os.path.isdir(dirName):
+        print("%s is not a directory" % (argv[1]))
+        sys.exit(1)
+
+    jpgList = glob.glob(os.path.join(dirName, "*.jpg"))
+    latestFile = max(jpgList, key=os.path.getmtime)
+    print("latest file: %s" % (latestFile))
+
+    convert(latestFile)
+        
+main(sys.argv)
