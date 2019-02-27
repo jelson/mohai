@@ -1,11 +1,13 @@
 
 # MOHAI Maker Days: Making the Mold
 
-The [MOHAI](https://mohai.org/), a museum in Seattle's South Lake Union has, a
-monthly event called [Maker Days](https://mohai.org/program/maker-days/) where a
-local maker comes and gives a free, hands-on, all-ages-appropriate introduction
-to an interesting maker skill or craft. In [February of
-2019](https://mohai.org/event/maker-day-making-the-mold/), that maker was me!
+The [MOHAI](https://mohai.org/), a museum in Seattle's South Lake
+Union has, a monthly event called [Maker
+Days](https://mohai.org/program/maker-days/) where a local maker comes
+and gives a free, hands-on, all-ages-appropriate introduction to an
+interesting maker skill or craft. In [February of
+2019](https://mohai.org/event/maker-day-making-the-mold/), that maker
+was me!
 
 I ran a booth demonstrating 3D printing, mold-making, and casting, and
 how all those elements can be brought together to convert anything you
@@ -19,18 +21,18 @@ into making the event, in case you'd like to reproduce it.
 [Here are some photos](https://photos.app.goo.gl/AzxZ8Njd79hLUo9N7) of
 the process and the event.
 
-The idea is this: first someone drew a design on a sheet of paper. We
+First, a participant would draw a design on a sheet of paper. We
 scanned the paper and turned the design into a 3D model -- a
-40mm-diameter circular medallion with your design embossed on
-top. Next, I printed the medallion face on a 3D printer. To save time,
-we'd pre-printed the body of the medallion before the event. At the
-event, we just printed the top layer with the embossed design on it
-and snapped it into the pre-printed body.
+40mm-diameter circular medallion with the drawn design embossed on
+top. Next, we printed the medallion face on a 3D printer. To save
+time, the body of the medallion was pre-printed before the event. At
+the event, we only printed the top layer with the embossed design on
+it and snapped it into the pre-printed body.
 
 Next, we helped participants measure out the proper amounts of a
 fast-curing silicone compound and pour it over the 3D-printed
-medallion. Ten minutes later, the silicone will cured into a
-negative of the medallion -- a mold.
+medallion. Ten minutes later, the silicone will cured into a negative
+of the medallion -- a mold.
 
 The last step was to mix together a two-part resin formula. We had a
 dozen different colorants on hand to make the medallion any color!
@@ -40,7 +42,8 @@ a lanyard, also available at the booth.
 
 ## Detailed Process
 
-We set up four stations at the event: drawing, printing, molding and casting.
+We set up four stations at the event: drawing, printing, molding and
+casting.
 
 The process below was optimized for throughput. If you'd like to
 reproduce it for a one-off, it's probably not necessary to use most of
@@ -62,8 +65,8 @@ the software I wrote.
   up in the Google Photos web interface (hit reload), and hit shift-d
   to download the photo to local disk.
 
-* Run my Python script that looks for the most-recently-written file in
-  the Chrome downloads folder, rotates it according to EXIF data,
+* Run my Python script that looks for the most-recently-written file
+  in the Chrome downloads folder, rotates it according to EXIF data,
   detects the QR codes, crops, filters out everything but red pixels,
   scales the image to the medallion size (using the QR code distance
   data), and feeds it to the 'potrace' program that produces an SVG
@@ -74,7 +77,8 @@ the software I wrote.
   with the base. After adjusting the position manually if necessary,
   export the fused object to STL.
 
-* Slice the STL, drag it to OctoPrint and print. (I hvae a Prusa i3 Mk3.)
+* Slice the STL, drag it to OctoPrint and print. (I hvae a Prusa i3
+  Mk3.)
 
 The process took a minute or two; the bottleneck was the printer.
 
