@@ -1,10 +1,10 @@
 
 # MOHAI Maker Days: Making the Mold
 
-The [MOHAI](https://mohai.org/) in South Lake Union has a monthly event called
-[Maker Days](https://mohai.org/program/maker-days/) where a local makers come
-and give a free, hands-on, all-ages-appropriate introduction to an interesting
-maker skill or craft. In [February of
+The [MOHAI](https://mohai.org/), a museum in Seattle's South Lake Union has, a
+monthly event called [Maker Days](https://mohai.org/program/maker-days/) where a
+local maker comes and gives a free, hands-on, all-ages-appropriate introduction
+to an interesting maker skill or craft. In [February of
 2019](https://mohai.org/event/maker-day-making-the-mold/), that maker was me!
 
 I ran a booth demonstrating 3D printing, mold-making, and casting, and
