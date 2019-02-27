@@ -2,7 +2,7 @@
 # MOHAI Maker Days: Making the Mold
 
 The [MOHAI](https://mohai.org/), a museum in Seattle's South Lake
-Union has, a monthly event called [Maker
+Union, has a monthly event called [Maker
 Days](https://mohai.org/program/maker-days/) where a local maker comes
 and gives a free, hands-on, all-ages-appropriate introduction to an
 interesting maker skill or craft. In [February of
@@ -10,13 +10,11 @@ interesting maker skill or craft. In [February of
 was me!
 
 I ran a booth demonstrating 3D printing, mold-making, and casting, and
-how all those elements can be brought together to convert anything you
-draw on paper into an plastic medallion with the drawn design embossed
-on the front. You can take home the medallion in minutes, and the mold
-too if you'd like to make more copies of it.
-
+how they can be brought together to make customized plastic medallions.
+People could draw a design on paper, and in minutes it'd be a solid
+piece of plastic in any color they wanted with their design embossed.
 This repository contains all the software and other files that went
-into making the event, in case you'd like to reproduce it.
+into making the event, in case anyone wants to reproduce it.
 
 [Here are some photos](https://photos.app.goo.gl/AzxZ8Njd79hLUo9N7) of
 the process and the event.
@@ -25,29 +23,30 @@ First, a participant would draw a design on a sheet of paper. We
 scanned the paper and turned the design into a 3D model -- a
 40mm-diameter circular medallion with the drawn design embossed on
 top. Next, we printed the medallion face on a 3D printer. To save
-time, the body of the medallion was pre-printed before the event. At
-the event, we only printed the top layer with the embossed design on
-it and snapped it into the pre-printed body.
+time, the body of the medallion was pre-printed. At the event, we only
+printed the top layer with the embossed design on it and snapped it
+into the pre-printed body.
 
 Next, we helped participants measure out the proper amounts of a
 fast-curing silicone compound and pour it over the 3D-printed
-medallion. Ten minutes later, the silicone will cured into a negative
-of the medallion -- a mold.
+medallion. Ten minutes later, the silicone cured into a negative of
+the medallion -- a mold.
 
 The last step was to mix together a two-part resin formula. We had a
-dozen different colorants on hand to make the medallion any color!
-Pour the liquid resin into your silicone mold, wait a couple of
-minutes, and you've got yourself a solid medallion ready to attach to
-a lanyard, also available at the booth.
+dozen different colorants on hand that could be combined to make the
+medallion almost any color. Then we'd pour the liquid resin into the
+silicone mold. After a couple of minutes, and you've got yourself a
+solid medallion ready to attach to a lanyard, also available at the
+booth.
 
 ## Detailed Process
 
 We set up four stations at the event: drawing, printing, molding and
 casting.
 
-The process below was optimized for throughput. If you'd like to
-reproduce it for a one-off, it's probably not necessary to use most of
-the software I wrote.
+The process below was optimized for throughput. If you're just making
+a single medallion, it's probably easier to do it manually than to try
+to get my automated software pipline running.
 
 ### Drawing
 
