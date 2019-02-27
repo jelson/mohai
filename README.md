@@ -3,18 +3,18 @@
 
 The [MOHAI](https://mohai.org/), a museum in Seattle's South Lake
 Union, has a monthly event called [Maker
-Days](https://mohai.org/program/maker-days/) where a local maker comes
-and gives a free, hands-on, all-ages-appropriate introduction to an
-interesting maker skill or craft. In [February of
+Days](https://mohai.org/program/maker-days/) where a local maker gives
+a free, hands-on, all-ages-appropriate introduction to an interesting
+maker skill or craft. In [February of
 2019](https://mohai.org/event/maker-day-making-the-mold/), that maker
 was me!
 
-I ran a booth demonstrating 3D printing, mold-making, and casting, and
-how they can be brought together to make customized plastic medallions.
-People could draw a design on paper, and in minutes it'd be a solid
-piece of plastic in any color they wanted with their design embossed.
-This repository contains all the software and other files that went
-into making the event, in case anyone wants to reproduce it.
+I demonstrated 3D printing, mold-making, casting, and how they can be
+combined to make customized plastic medallions.  People could draw a
+design on paper, and in minutes it'd be a solid plastic medallion in
+any color they wanted with their design embossed on top.  This
+repository contains all the software and other files that went into
+making the event, in case anyone wants to reproduce it.
 
 [Here are some photos](https://photos.app.goo.gl/AzxZ8Njd79hLUo9N7) of
 the process and the event.
@@ -27,17 +27,21 @@ time, the body of the medallion was pre-printed. At the event, we only
 printed the top layer with the embossed design on it and snapped it
 into the pre-printed body.
 
-Next, we helped participants measure out the proper amounts of a
+Then we helped participants measure out the proper amounts of a
 fast-curing silicone compound and pour it over the 3D-printed
 medallion. Ten minutes later, the silicone cured into a negative of
 the medallion -- a mold.
 
 The last step was to mix together a two-part resin formula. We had a
 dozen different colorants on hand that could be combined to make the
-medallion almost any color. Then we'd pour the liquid resin into the
-silicone mold. After a couple of minutes, and you've got yourself a
-solid medallion ready to attach to a lanyard, also available at the
+medallion almost any color. We'd pour the liquid resin into the
+silicone mold. After a couple of minutes of curing you've got yourself
+a solid medallion ready to attach to a lanyard, also available at the
 booth.
+
+The entire process took roughly a half-hour from beginning to end. I
+chose the fastest-curing silicone and resin that Smooth-On makes so
+people could get instant results.
 
 ## Detailed Process
 
