@@ -126,3 +126,83 @@ just dispense into a cup and stir with a popsicle stick.
   [lanyard](https://www.amazon.com/gp/product/B018JW4IBC/ref=oh_aui_search_asin_title?ie=UTF8&psc=1)
   in your choice of color!
 
+## Packing List
+
+Here's my packing list, which might be useful if you're trying to set
+up a similar event:
+
+### Drawing and Scanning Station
+
+* Template sheets
+
+* Red pens
+
+* Laptop
+
+* Laptop Charger
+
+* USB mouse
+
+* Phone with internet connection
+
+* Phone charger
+
+* Power strips
+
+### 3D Printing Station
+
+* One or more 3D printers
+
+* OctoPi or similar control software
+
+* SD card reader to fix OctoPi wifi connection issues
+
+* Extra SD card
+
+* Isopropyl alcohol with wipes to clean printer bed
+
+* Scraper, needlenose pliers
+
+* Extra PLA
+
+### Mold Making Station
+
+* At least a half-dozen pre-printed medallion bases (with integrated
+  mold boxes)
+
+* Smooth-On Body Double Fast, Parts A and B, 400mL cartridges; 1 pair
+  of cartridges per 5 molds
+  ([link](https://www.reynoldsam.com/product/body-double/))
+
+* Body Double dispenser
+  ([link](https://www.reynoldsam.com/product/dispensing-guns/))
+
+* Mold release spray
+
+* Dental pick (to remove molds from boxes)
+
+* Shop towels
+
+* Popsicle sticks for mixing
+
+* 4oz plastic containers as mixing vessels
+
+### Casting Station
+
+* Smooth-On Smooth-Cast 300Q
+  ([link](https://www.reynoldsam.com/product/smooth-cast-300/))
+
+* Smooth-On So-Strong colorants, 2oz set with built-in droppers
+  ([link](https://www.reynoldsam.com/product/strong-color-tints/))
+
+* A selection of colored lanyards
+
+* Several gram scales ([GDEALER
+  DS1](https://www.amazon.com/gp/product/B01E6RE3A0/ref=oh_aui_search_asin_title?ie=UTF8&psc=1)
+  is decent and only $12 on Amazon)
+
+* 2oz plastic containers for mixing
+
+* More shop towels, popsicle sticks
+
+* Disposable eyedroppers
