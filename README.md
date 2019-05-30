@@ -104,11 +104,11 @@ fine detail won't be reproduced by most 3D printers.
   (e.g. [PrusaSlicer](https://www.prusa3d.com/prusaslicer/)), drag the
   gcode file to OctoPrint and print. (I have a Prusa i3 Mk3.)
 
-The conversion process took a minute or two. The bottleneck was the
-printer: it took about 8 minutes to print a medallion face, plus a
-couple minutes extra to wait for the cooling, cleaning, and reheating
-cycle between prints. If I were doing this event again, I'd definitely
-want more than one printer.
+The conversion process from paper to STL took two to three
+minutes. The bottleneck was the printer: it took about 8 minutes to
+print a medallion face, plus a couple minutes extra to wait for the
+cooling, cleaning, and reheating cycle between prints. If I were doing
+this event again, I'd definitely want more than one printer.
 
 ### Molding
 
