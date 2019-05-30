@@ -173,9 +173,10 @@ up a similar event:
 
 * Template sheets
 
-* Red pens
+* Red magic markers with thick tips
 
-* Laptop
+* Laptop with software preloaded and tested (e.g. make sure you have
+  all the Python modules you need)
 
 * Laptop Charger
 
@@ -215,7 +216,7 @@ up a similar event:
 * Body Double dispenser
   ([link](https://www.reynoldsam.com/product/dispensing-guns/))
 
-* Mold release spray
+* Mold release spray such as Ease-Release 200
 
 * Dental pick (to remove molds from boxes)
 
@@ -233,14 +234,15 @@ up a similar event:
 * Smooth-On So-Strong colorants, 2oz set with built-in droppers
   ([link](https://www.reynoldsam.com/product/strong-color-tints/))
 
-* A selection of colored lanyards
+* A selection of colored lanyards, e.g. [these](https://www.amazon.com/gp/product/B018LPNI5O/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 
 * Several gram scales ([GDEALER
   DS1](https://www.amazon.com/gp/product/B01E6RE3A0/ref=oh_aui_search_asin_title?ie=UTF8&psc=1)
   is decent and only $12 on Amazon)
 
-* 2oz plastic containers for mixing
+* 2oz plastic containers and popsicle sticks for mixing
 
-* More shop towels, popsicle sticks
+* More shop towels
 
-* Disposable eyedroppers
+* Disposable plastic long-nose eyedroppers or pipettes,
+  e.g. [these](https://www.amazon.com/Rienar-Disposable-Transfer-Graduated-Pipettes/dp/B00P7QZDK4/ref=sr_1_6?keywords=long+eye+dropper&qid=1559247553&s=gateway&sr=8-6-spell)
