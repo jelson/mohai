@@ -66,7 +66,8 @@ to get my automated software pipline running.
   depending on how many participants you expect.
 
 * Instruct participants to draw their design of choice using a red
-  marker inside the circle.
+  marker inside the circle without getting any marks outside the
+  circle.
 
 Make sure the red markers you provide are good, thick magic markers;
 don't use a fine red pen! I intentionally set the ratio of the radius
