@@ -61,6 +61,19 @@ to get my automated software pipline running.
   in, four QR codes in the corners and instructions to only draw in
   red ink.
 
+* Print or photocopy enough instruction sheets depending on how many
+  participants you expect.
+
+* Instruct participants to draw their design of choice using a red
+  marker inside the circle.
+
+Make sure the red markers you provide are good, thick magic markers;
+don't use a fine red pen! I intentionally set the ratio of the radius
+of the circle on the instruction sheet to a magic marker's tip width
+to be roughly the same as the ratio of the final finished medallion
+size to the minimum resolvable feature size on the Prusa MK3 printer.
+In other words, make sure participants draw with thick, bold strokes; 
+fine detail won't be reproduced by most 3D printers.
 
 ### Printing
 
@@ -80,10 +93,15 @@ to get my automated software pipline running.
   with the base. After adjusting the position manually if necessary,
   export the fused object to STL.
 
-* Slice the STL, drag it to OctoPrint and print. (I hvae a Prusa i3
-  Mk3.)
+* Slice the STL with your favorite slicer
+  (e.g. [PrusaSlicer](https://www.prusa3d.com/prusaslicer/)), drag the
+  gcode file to OctoPrint and print. (I hvae a Prusa i3 Mk3.)
 
-The process took a minute or two; the bottleneck was the printer.
+The conversion process took a minute or two. The bottleneck was the
+printer: it took about 8 minutes to print a medallion face, plus a
+couple minutes extra to wait for the cooling, cleaning, and reheating
+cycle between prints. If I were doing this event again, I'd definitely
+want more than one printer.
 
 ### Molding
 
@@ -107,7 +125,18 @@ just dispense into a cup and stir with a popsicle stick.
 
 * Pour into the mold.
 
-* Wait 10 minutes or so for it to cure
+* Wait 10 minutes or so for it to cure.
+
+* Once cured, carefully remove the mold from the box. I found that a
+  [dental
+  pick](https://www.amazon.com/Dental-Duty-Hygiene-Calculus-Stainless/dp/B01LOM4ISM/ref=sr_1_1_sspa?crid=1EFUAWSWJ6C8K&keywords=dental%2Bpicks%2Bstainless%2Bsteel&qid=1559246631&s=gateway&sprefix=dentail%2Bpic%2Caps%2C193&sr=8-1-spons&th=1)
+  was a good choice of tool for this. Insert the pick parallel to the
+  box wall and rotate it 90 degrees to bite into the silicone, then
+  pull up.
+
+* The custom-printed medallion face can be given to the participant as
+  another souvenir. Reuse the mold box with its integrated medallion
+  body template for the next participant.
 
 ### Casting
 
