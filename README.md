@@ -61,8 +61,9 @@ to get my automated software pipline running.
   in, four QR codes in the corners and instructions to only draw in
   red ink.
 
-* Print or photocopy enough instruction sheets depending on how many
-  participants you expect.
+* Print or photocopy enough [instruction
+  sheets](https://github.com/jelson/mohai/blob/master/worksheet/v2/worksheet.pdf)
+  depending on how many participants you expect.
 
 * Instruct participants to draw their design of choice using a red
   marker inside the circle.
@@ -81,21 +82,26 @@ fine detail won't be reproduced by most 3D printers.
   up in the Google Photos web interface (hit reload), and hit shift-d
   to download the photo to local disk.
 
-* Run my Python script that looks for the most-recently-written file
-  in the Chrome downloads folder, rotates it according to EXIF data,
-  detects the QR codes, crops, filters out everything but red pixels,
-  scales the image to the medallion size (using the QR code distance
-  data), and feeds it to the 'potrace' program that produces an SVG
-  out of a raster image.
+* Run my [Python scanner
+  script](https://github.com/jelson/mohai/blob/master/perspective-fixer/converter.py)
+  that looks for the most-recently-written file in the Chrome
+  downloads folder, rotates it according to EXIF data, detects the QR
+  codes, crops, filters out everything but red pixels, scales the
+  image to the medallion size (using the QR code distance data), and
+  feeds it to the 'potrace' program that produces an SVG out of a
+  raster image.
 
-* In [FreeCAD](https://www.freecadweb.org), run my macro that opens a
-  template medallion face, imports the SVG, extrudes it, and fuses it
-  with the base. After adjusting the position manually if necessary,
-  export the fused object to STL.
+* In [FreeCAD](https://www.freecadweb.org), run [my
+  macro](https://github.com/jelson/mohai/blob/master/base/emboss-manual.FCMacro)
+  that opens a [template medallion
+  face](https://github.com/jelson/mohai/blob/master/base/Medallion%20Face%20Template%20Rev%20B.FCStd),
+  imports the SVG produced in the previous step, extrudes it, and
+  fuses it with the base. After adjusting the position manually if
+  necessary, export the fused object to STL.
 
 * Slice the STL with your favorite slicer
   (e.g. [PrusaSlicer](https://www.prusa3d.com/prusaslicer/)), drag the
-  gcode file to OctoPrint and print. (I hvae a Prusa i3 Mk3.)
+  gcode file to OctoPrint and print. (I have a Prusa i3 Mk3.)
 
 The conversion process took a minute or two. The bottleneck was the
 printer: it took about 8 minutes to print a medallion face, plus a
@@ -105,10 +111,13 @@ want more than one printer.
 
 ### Molding
 
-* Snap the printed medallion face onto one of the reusable preprinted
-bases which has the body of the medallion and a built-in mold box.
+* Snap the printed medallion face onto one of the [reusable preprinted
+  bases](https://github.com/jelson/mohai/blob/master/base/Medallion%20Base%20Rev%20G.stl)
+  which has the body of the medallion and a built-in mold box.
 
-* Spray mold release lightly.
+* Spray [mold
+  release](https://www.smooth-on.com/product-line/ease-release/)
+  lightly.
 
 * Measure out 30g of Part A and 30g of Part B of [Smooth-On Body
 Double
